@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  frontend:
+    build: test-task
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'
+    ports:
+      - "4202:4202"
+    container_name: front-container
+    links:
+      - backend
+    restart: always
+  backend:
+    build: test-task-back
+    ports:
+      - "3000:3000"
+    container_name: back-container
+    restart: always
